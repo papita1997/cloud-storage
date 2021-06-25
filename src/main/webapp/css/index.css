@@ -1,0 +1,86 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+}
+
+.mynav {
+    width: 100%;
+    height: 10vh;
+    background-color: black;
+    position: sticky;
+}
+
+.nav-items {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.nav-items .nav-logo img {
+    width: 50px;
+    height: 50px;
+    margin: auto 15px;
+}
+
+.nav-items .nav-logo a {
+    text-decoration: none;
+    color: white;
+    margin: auto -5px;
+    font-size: 1.5em;
+    font-weight: 600;
+    font-family: 'Roboto Slab', serif;
+}
+
+.nav-links {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    padding: 0 15px;
+    margin: auto 0;
+    font-size: 1em;
+    font-weight: 600;
+    font-family: 'Roboto Slab', serif;
+}
+
+.footer {
+    width: 100%;
+    height: 10vh;
+    position: absolute;
+    background-color: black;
+    text-align: center;
+    margin: 0px auto;
+}
+
+.footer p {
+    color: white;
+    letter-spacing: 1px;
+    font-size: 0.8em;
+    font-weight: 600;
+    font-family: 'Roboto Slab', serif;
+    margin: 12px auto;
+}
