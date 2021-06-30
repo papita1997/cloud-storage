@@ -158,3 +158,16 @@ span{
 	background-color: red;
 	
 }
+
+.error {
+	width:100%;
+	text-align:center;
+	margin-top:50px;
+	position:relative;
+}
+
+.error h4 {
+	display:inline;
+	color:red;
+}
+

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,25 +10,25 @@
     <title>Cloud Storage</title>
 </head>
 <body>
-    <div class="container">
         <nav class="mynav">
            <div class="nav-items">
                 <div class="nav-logo">
                     <img src="./images/logo.png" alt="">
-                    <a href="">Cloud Storage</a>
+                    <a href="#">Cloud Storage</a>
                 </div>
                 <div class="nav-links">
-                    <a href="login.html">Login/sign-up</a>
-                    <a href="#">User Name</a>
+                    <a href="<%=request.getParameter("name")==null?"login.jsp":"logout" %>"><%=request.getParameter("name")==null?"Login/sign-up":"Logout" %></a>
+                    <a href="#"><%=request.getParameter("name")==null?"":request.getParameter("name") %></a>
                 </div>
            </div>
         </nav>
-
-        
+ 
+        <div>
+        	
+        </div>
 
         <footer class="footer">
             <p>&#9400; made by Aditya & Pawan Interprise!</p>
         </footer>
-    </div>
 </body>
 </html>

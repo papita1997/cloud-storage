@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,12 +11,11 @@
 	<title>Home</title>
 </head>
 <body>
-	<div class="container">
 		<nav class="mynav">
 			<div class="nav-items">
 				 <div class="nav-logo">
 					 <img src="./images/logo.png" alt="">
-					 <a href="">Cloud Storage</a>
+					 <a href="index.html">Cloud Storage</a>
 				 </div>
 				 <div class="nav-links">
 					 <a href="login.html">Login/sign-up</a>
@@ -22,8 +23,13 @@
 				 </div>
 			</div>
 		 </nav>
+		<div class="error">
+		<h4><%=request.getParameter("error")==null?"":request.getParameter("error") %></h4>
+		</div>
 		<div class="form-container">
+		
 		<div class="form">
+		
 			<div class="head" class="signup">
 				<div class="login-tab" onclick="login()" id="check">
 					LOGIN
@@ -35,7 +41,7 @@
 			<form class="input-group1" id="login">
 				<div class="pic">
 				<i class="user"></i>
-				<input type="text" class="input-field" id="users" placeholder="Your Batch Number" required>
+				<input type="text" class="input-field" id="users" placeholder="UserId"  name="userid" required>
 				</div>
 				<div class="pic">
 				<i class="pass"></i>		
@@ -46,22 +52,22 @@
 			   </div>
 				<input type="submit" value="Login" class="submit-btn">
 			</form>
-			<form class="input-group" id="register">
+			<form class="input-group" id="register" action="RegisterController" method="post">
 			<div class="pic">
 				<i class="add"></i>
-				<input type="text" class="input-field" placeholder="Name" required>
+				<input type="text" class="input-field" placeholder="Enter Name" name="username" required>
 			</div>
 			<div class="pic">
 				<i class="user"></i>
-				<input type="text" class="input-field" placeholder="Your Batch Number" required>
+				<input type="text" class="input-field" placeholder="Enter UserId" name="userid" required>
 			</div>
 			<div class="pic">
 				<i class="pass"></i>
-				<input type="password" class="input-field" placeholder="Your Password" required>
+				<input type="password" class="input-field" placeholder="Password" name="password" required>
 			</div>
 			<div class="pic">
 				<i class="pass"></i>
-				<input type="password" class="input-field" placeholder="Your Confirm Password" required>
+				<input type="password" class="input-field" placeholder="Confirm Password" name="repassword" required>
 			</div>
 			<div class="pic">
 				<input type="checkbox" class="check-box"><span>I Agree to Terms & Conditions</span>
@@ -74,7 +80,6 @@
 	<footer class="footer">
 		<p>&#9400; made by Aditya & Pawan Interprise!</p>
 	</footer>
-	</div>
 <script src="./js/login.js" type="text/javascript"></script>
 </body>
 </html>>
