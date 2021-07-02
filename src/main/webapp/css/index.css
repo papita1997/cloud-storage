@@ -5,18 +5,26 @@
     margin: 0;
     padding: 0;
 }
+*,*::before,*::after {
+    box-sizing: border-box;
+}
 
 body {
-	min-height: 100vh;
-	display:grid;
-	grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    overflow-y: hidden;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
 }
 
 .mynav {
     width: 100%;
     height: 10vh;
     background-color: black;
-    position: sticky;
 }
 
 .nav-items {
@@ -81,5 +89,240 @@ body {
     font-size: 0.8em;
     font-weight: 600;
     font-family: 'Roboto Slab', serif;
-    margin: 12px auto;
+    margin: 18px auto;
+}
+
+.main {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+.col-1 {
+    width: 20%;
+    height: 90vh;
+}
+
+.col-2 {
+    width: 80%;
+    height: 90vh;
+    overflow: auto;
+}
+
+.col-2::-webkit-scrollbar {
+    width: 5px;
+}
+
+.col-2::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-image: linear-gradient(#9CC3D5FF,#9CC3D5FF);
+}
+.col-2::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-image: linear-gradient(#0063B2FF,#0063B2FF);
+}
+
+.col-1 .row-1 {
+    position: relative;
+    width: 90%;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-bottom: 1px solid lightgray;
+}
+
+.col-1 .row-1 p {
+    display: block;
+    padding: 8px 0;
+    padding-left: 30px;
+    font-size: 18px;
+    cursor: pointer;
+}
+.col-1 .row-1 p:hover {
+    background-color: rgba(232,240,254,0.6);
+    border-radius: 0 50px 50px 0;
+}
+
+.m-10 {
+    margin-top: 10px;
+}
+.col-1 .row-1 .row-links-1 p::before {
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+    content: "\f0a0 \0020 \2001";
+}
+
+.col-1 .row-1 .row-links-2 p::before {
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+    content: "\f65e \0020 \2001";
+}
+.col-1 .row-1 .row-links-3 p::before {
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+    content: "\f574 \0020 \2001";
+}
+.col-1 .row-1 .row-links-4 p::before {
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+    content: "\f093 \0020 \2001";
+}
+
+.active {
+    background-color: rgb(232,240,254);
+    color: blue;
+    font-weight: bold;
+    border-radius: 0 50px 50px 0;
+}
+
+.col-1 .row-2 {
+    position: relative;
+    width: 90%;
+    height: 40vh;
+}
+.col-1 .row-2 .row-links-5 p::before {
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+    content: "\f1c0 \0020 \2001";
+}
+
+.col-1 .row-2 p {
+    display: block;
+    padding: 8px 0;
+    padding-left: 30px;
+    font-size: 18px;
+    cursor: pointer;
+}
+.col-1 .row-2 p:hover {
+    background-color: rgba(232,240,254,0.6);
+    border-radius: 0 50px 50px 0;
+}
+
+.col-1 .row-2 .bar-container {
+    width: 80%;
+    height: 5px;
+    background-color: lightgray;
+    border-radius: 10px;
+    margin: 15px auto;
+}
+
+.bar-container .bar {
+    width: 50%;
+    height: 5px;
+    background-color: blue;
+    border-radius: 10px;
+}
+
+#space {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    color: rgba(0, 0, 41,.7);
+    margin-top: -15px;
+}
+
+.col-1 .row-2 .btn-container {
+    margin: 20px auto;
+    text-align: center;
+}
+
+.col-1 .row-2 .btn {
+    cursor: pointer;
+    background-color: transparent;
+    color: blue;
+    font-weight: 500;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 255, .4);
+    box-shadow: 0px 0px 5px rgba(0, 0, 255, .6);
+    transition: all linear 100ms;
+}
+
+.col-1 .row-2 .btn:hover {
+    background-color: rgba(0, 0, 255,.8);
+    color: white;
+    font-weight: bold;
+    padding: 12px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 255,1);
+}
+
+.new-folder-popup {
+    position: absolute;
+    background-color: white;
+    top: 30%;
+    right: 50%;
+    left: 40%;
+    bottom: 50%;
+    width: 0px;
+    height: 170px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px #000;
+    opacity: 0;
+    transition: width linear 1s;
+    z-index: 2;
+}
+
+.popup-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.popup-p-btn {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 20px 20px 20px;
+}
+
+.popup-p-btn p {
+    font-size: 1.3em;
+    font-weight: 300;
+}
+
+.popup-p-btn i {
+    cursor: pointer;
+}
+
+.popup-text {
+    position: relative;
+    text-align: center;
+    margin: 20px auto 10px auto;
+    height: fit-content;
+}
+.popup-text input{
+   padding: 7px;
+}
+.popup-btn {
+    position: relative;
+    text-align: right;
+    margin-right: 40px;
+    margin-top: 15px;
+}
+
+.popup-btn button {
+    margin: 0 3px;
+    padding: 10px 20px 10px 20px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+.popup-btn button:hover {
+    box-shadow: 0px 0px 7px #000;
+}
+
+.popup-btn #cancel-btn {
+    background-color: transparent;
+    color: black;
+    font-weight: 300;
 }

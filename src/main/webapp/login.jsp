@@ -38,14 +38,14 @@
 					SIGN UP
 				</div>
 			</div>
-			<form class="input-group1" id="login">
+			<form class="input-group1" id="login" action="loginservlet" method="post">
 				<div class="pic">
 				<i class="user"></i>
 				<input type="text" class="input-field" id="users" placeholder="UserId"  name="userid" required>
 				</div>
 				<div class="pic">
 				<i class="pass"></i>		
-				<input type="password" class="input-field" placeholder="Your Password" required>
+				<input type="password" class="input-field" placeholder="Your Password" name="password" required>
 				</div>
 				<div class="pic">
 				<input type="checkbox" class="check-box"><span>Remember Password</span>
@@ -77,9 +77,7 @@
 		</div>
 	</div>
 	
-	<footer class="footer">
-		<p>&#9400; made by Aditya & Pawan Interprise!</p>
-	</footer>
+	
 <script src="./js/login.js" type="text/javascript"></script>
 </body>
 </html>>
