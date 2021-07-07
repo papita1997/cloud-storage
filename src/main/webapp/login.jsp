@@ -1,5 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+
+
+<%
+	String userid = (String) request.getSession().getAttribute("userid");
+	if(userid!=null) {
+		response.sendRedirect("index.jsp");
+		return;
+	} 
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,18 +22,19 @@
 	<title>Home</title>
 </head>
 <body>
-		<nav class="mynav">
-			<div class="nav-items">
-				 <div class="nav-logo">
-					 <img src="./images/logo.png" alt="">
-					 <a href="index.html">Cloud Storage</a>
-				 </div>
-				 <div class="nav-links">
-					 <a href="login.html">Login/sign-up</a>
-					 <a href="#">User Name</a>
-				 </div>
-			</div>
-		 </nav>
+	<nav class="mynav">
+        <div class="nav-items">
+             <div class="nav-logo">
+                 <img src="./images/logo.png" alt="">
+                 <a href="index.jsp">Cloud Storage</a>
+             </div>
+             
+             <div class="nav-links">
+                 <a href="<%=request.getParameter("name")==null?"login.jsp":"logout" %>"><%=request.getParameter("name")==null?"Login/sign-up":"Logout" %></a>
+                 <a href="#"><%=request.getParameter("name")==null?"":request.getParameter("name") %></a>
+             </div>
+        </div>
+     </nav>
 		<div class="error">
 		<h4><%=request.getParameter("error")==null?"":request.getParameter("error") %></h4>
 		</div>

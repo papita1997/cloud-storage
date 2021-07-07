@@ -1,8 +1,11 @@
 package controller;
 
 import java.io.IOException;
+import java.util.UUID;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -51,11 +54,15 @@ public class RegisterController extends HttpServlet {
 		u.setUsername(username);
 		u.setPassword(password);
 		u.setUserid(userid);
-		
+		String userUUID = UUID.randomUUID().toString();
+		Cookie cookie = new Cookie("userUUID",userUUID);
+		response.addCookie(cookie);
+		cookie.setMaxAge(2592000);
+		u.setUserUUID(userUUID);
 		try {
 			boolean result = Users.insertUsers(u);
 			if(result) {
-				response.sendRedirect("index.jsp?name="+username);
+				response.sendRedirect("index.jsp");
 				return;
 			} else {
 				response.sendRedirect("login.jsp?error=try after some time");

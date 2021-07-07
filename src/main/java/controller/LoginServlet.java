@@ -1,8 +1,11 @@
 package controller;
 
 import java.io.IOException;
+import java.util.UUID;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,7 +33,6 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userid = (String)request.getParameter("userid");
 		String password = (String)request.getParameter("password");
-		
 		UserPojo u = new UserPojo();
 		u.setUserid(userid);
 		u.setPassword(password);
@@ -42,7 +44,16 @@ public class LoginServlet extends HttpServlet {
 				response.sendRedirect("login.jsp?error=Invalid Username and Password");
 				return;
 			} else {
-				response.sendRedirect("index.jsp?name="+username);
+				String userUUID = UUID.randomUUID().toString();
+				System.out.println(userUUID);
+				Cookie cookie = new Cookie("userUUID",userUUID);
+				response.addCookie(cookie);
+				cookie.setMaxAge(2592000);
+				boolean result = Users.updateUUID(userUUID, userid);
+				request.getSession().setAttribute("userid", userid);
+				request.setAttribute("username", username);
+				request.getRequestDispatcher("HomeServlet").include(request, response);
+				request.getRequestDispatcher("index.jsp").forward(request, response);
 				return;
 			}
 			

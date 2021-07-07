@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -13,7 +14,8 @@ body {
     min-height: 100vh;
     display: grid;
     grid-template-rows: auto 1fr auto;
-    overflow-y: hidden;
+    overflow: hidden;
+    color: gray ;
 }
 
 .container {
@@ -21,10 +23,12 @@ body {
     height: 100vh;
 }
 
+/* navigation bar */
+
 .mynav {
     width: 100%;
     height: 10vh;
-    background-color: black;
+    border-bottom: 1px solid lightgray;
 }
 
 .nav-items {
@@ -36,9 +40,10 @@ body {
     align-items: center;
 }
 
+/* nav bar logo */
 .nav-logo {
     position: relative;
-    width: 100%;
+    width: 50%;
     height: 100%;
     display: flex;
 }
@@ -51,16 +56,60 @@ body {
 
 .nav-items .nav-logo a {
     text-decoration: none;
-    color: white;
+    color: gray;
     margin: auto -5px;
     font-size: 1.5em;
     font-weight: 600;
     font-family: 'Roboto Slab', serif;
 }
 
+/* search bar */
+.search-bar-container {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-bar {
+    width: 100%;
+    height: 70%;
+    background-color: rgb(241,243,244);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-bar input {
+    position: relative;
+    width: 90%;
+    height: 80%;
+    font-size: 1em;
+    border: none;
+    background-color: transparent;
+}
+
+.search-bar input:hover,input:focus {
+    outline: none;
+}
+
+.search-bar span::before {
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 600; 
+    content: "\f002 \2001";
+    font-size: 1.3em;
+    color: gray; 
+    padding-left: 20px;
+}
+
+/* navigation links */
+
 .nav-links {
     position: relative;
-    width: 100%;
+    width: 50%;
     height: 100%;
     display: flex;
     flex-direction: row-reverse;
@@ -68,7 +117,7 @@ body {
 
 .nav-links a {
     text-decoration: none;
-    color: white;
+    color: gray;
     padding: 0 15px;
     margin: auto 0;
     font-size: 1em;
@@ -76,6 +125,7 @@ body {
     font-family: 'Roboto Slab', serif;
 }
 
+/* footer */
 .footer {
     width: 100%;
     height: 10vh;
@@ -92,6 +142,7 @@ body {
     margin: 18px auto;
 }
 
+/* main */
 .main {
     width: 100%;
     position: relative;
@@ -107,22 +158,9 @@ body {
 .col-2 {
     width: 80%;
     height: 90vh;
-    overflow: auto;
+    transition: all ease-in-out 500ms;
 }
-
-.col-2::-webkit-scrollbar {
-    width: 5px;
-}
-
-.col-2::-webkit-scrollbar-track {
-    border-radius: 10px;
-    background-image: linear-gradient(#9CC3D5FF,#9CC3D5FF);
-}
-.col-2::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-image: linear-gradient(#0063B2FF,#0063B2FF);
-}
-
+ /* main left navigation */
 .col-1 .row-1 {
     position: relative;
     width: 90%;
@@ -325,4 +363,271 @@ body {
     background-color: transparent;
     color: black;
     font-weight: 300;
+}
+
+
+/* My drive Content */
+
+.col-2 .row-1-nav {
+    width: 100%;
+    height: 6vh;
+    margin: 10px 0;
+}
+
+.col-2 .row-1-nav ul {
+    display: flex;
+}
+.col-2 .row-1-nav ul li {
+    padding: 5px;
+    list-style: none;
+}
+
+.row-1-nav ul li a {
+    text-decoration: none;
+    color: rgb(38, 36, 68);
+    font-weight: 600;
+    font-size: 1.3em;
+    font-family: 'Source Sans Pro', sans-serif;
+    letter-spacing: 1px;
+}
+
+.row-1-nav hr {
+    opacity: .3;
+    margin-top: 5px;
+}
+
+/* Folder section */
+.row-2-content {
+    width: 100%;
+    height: 80vh;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.row-2-content::-webkit-scrollbar {
+    width: 5px;
+}
+
+.row-2-content::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-image: linear-gradient(#9CC3D5FF,#9CC3D5FF);
+}
+.row-2-content::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-image: linear-gradient(#0063B2FF,#0063B2FF);
+}
+
+.row-2-content .folder {
+    width: 100%;
+    height: fit-content;
+    margin-top: 10px;
+}
+
+.wrappers {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.folder p {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    color: rgb(41, 40, 40);
+    font-size: .9em;
+    padding: 10px;
+}
+
+.folder .folder-box {
+    width: 250px;
+    height: 50px;
+    border: 1px solid rgba(128, 128, 128, 0.4);
+    border-radius: 5px;
+    margin: 20px 0 0 10px;
+    display: block;
+    
+}
+
+.folder-box p {
+    color: rgb(41, 40, 40);
+    font-size: .9em;
+    padding: 12px;
+    padding-left: 20px;
+    align-items: center;
+}
+
+.folder-box p::before {
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+    content: "\f07b \2000";
+    font-size: 1.3em;
+    color: gray;
+}
+
+/* File section */
+
+
+.row-2-content .file {
+    width: 100%;
+    height: fit-content;
+    margin: 20px 0;
+}
+
+.file p {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    color: rgb(41, 40, 40);
+    font-size: .9em;
+    padding: 10px;
+}
+
+.file .file-box {
+    width: 250px;
+    height: 200px;
+    border: 1px solid rgba(128, 128, 128, 0.4);
+    border-radius: 5px;
+    margin: 20px 0 0 10px;
+    
+}
+
+.file-box .file-img img {
+    width: 250px;
+    height: 150px;
+    object-fit: cover;
+   
+}
+
+.file-box .file-name {
+    width: 250px;
+    height: 50px;
+}
+
+.file-name p {
+    color: rgb(41, 40, 40);
+    font-size: .9em;
+    padding: 12px;
+    padding-left: 20px;
+    align-items: center;
+}
+
+.file-name p::before {
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+    content: "\f07b \2000";
+    font-size: 1.3em;
+    color: gray;
+}
+ 
+
+/* bottom space */
+.space {
+    width: 100%;
+    height: 4vh;
+}
+
+  /* Storage part section */
+
+.col-3{
+    width: 80%;
+    height: 90vh;
+    display: none;
+    opacity: 0;
+    transition: all ease-in-out 500ms;
+}
+
+
+
+.col-3 .row-1-nav {
+    width: 100%;
+    height: 5vh;
+    margin: 10px 0;
+    /* position: fixed;
+    display: block;
+    background-color: white; */
+}
+
+.col-3 .row-1-nav ul {
+    display: flex;
+    justify-content: space-between;
+     margin: 0 50px 0 0;
+}
+.col-3 .row-1-nav ul li {
+    padding: 5px;
+    list-style: none;
+    
+}
+
+.row-1-nav ul li a {
+    text-decoration: none;
+    color: rgb(38, 36, 68);
+    font-weight: 600;
+    font-size: 1em;
+    font-family: 'Source Sans Pro', sans-serif;
+    letter-spacing: 1px;
+}
+
+#backup-icon ::after{
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+    content: "\2000 \f05a ";
+    color: gray;
+}
+
+#storage-icon-down ::after{
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+    content: "\2000 \f063 ";
+    color: gray; 
+}
+
+#storage-icon-up ::after{
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+    content: "\2000 \f062 ";
+    color: gray; 
+}
+
+.row-1-nav hr {
+    opacity: .3;
+    margin-top: 5px;
+}
+
+/* storage content */
+.storage-content {
+    width: 100%;
+    height: 80vh;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.storage-content::-webkit-scrollbar {
+    width: 5px;
+}
+
+.storage-content::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-image: linear-gradient(#9CC3D5FF,#9CC3D5FF);
+}
+.storage-content::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-image: linear-gradient(#0063B2FF,#0063B2FF);
+}
+
+
+.storage-content .contents {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+    text-align: center;
+}
+
+.contents p {
+    margin: 10px 90px 10px 10px;
+}
+
+#type-icon::before {
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+    content: "\f1c1 \2000";
+    color: gray; 
 }
