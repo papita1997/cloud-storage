@@ -47,8 +47,8 @@ public class LoginServlet extends HttpServlet {
 				String userUUID = UUID.randomUUID().toString();
 				System.out.println(userUUID);
 				Cookie cookie = new Cookie("userUUID",userUUID);
-				response.addCookie(cookie);
 				cookie.setMaxAge(2592000);
+				response.addCookie(cookie);
 				boolean result = Users.updateUUID(userUUID, userid);
 				request.getSession().setAttribute("userid", userid);
 				request.setAttribute("username", username);

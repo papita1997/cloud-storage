@@ -56,8 +56,8 @@ public class RegisterController extends HttpServlet {
 		u.setUserid(userid);
 		String userUUID = UUID.randomUUID().toString();
 		Cookie cookie = new Cookie("userUUID",userUUID);
-		response.addCookie(cookie);
 		cookie.setMaxAge(2592000);
+		response.addCookie(cookie);
 		u.setUserUUID(userUUID);
 		try {
 			boolean result = Users.insertUsers(u);

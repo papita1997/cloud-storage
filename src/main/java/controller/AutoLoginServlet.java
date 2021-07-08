@@ -28,6 +28,10 @@ public class AutoLoginServlet extends HttpServlet {
 		String mycookiename = "userUUID";
 		String browsercookie = "";
 		Cookie[] cookies = request.getCookies();
+		if(cookies == null) {
+			request.getSession().setAttribute("userid", null);
+			return;
+		}
 		for(int i=0;i<cookies.length;i++) {
 			Cookie c = cookies[i];
 			if(mycookiename.equalsIgnoreCase(c.getName())) {
