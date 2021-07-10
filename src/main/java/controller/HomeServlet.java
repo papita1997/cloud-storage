@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.StorageDao;
+import global.GlobalData;
 import pojo.StoragePojo;
 
 /**
@@ -28,8 +30,12 @@ public class HomeServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userid = (String) request.getSession().getAttribute("userid");
+		
+		String navPath = GlobalData.navPaths;
+		System.out.println(navPath);
+		
 		try {
-			Map<String,List<StoragePojo>> alldatas = StorageDao.getAllStorageData(userid, "My Drive");
+			Map<String,List<StoragePojo>> alldatas = StorageDao.getAllStorageData(userid, navPath);
 			
 			if(alldatas!=null) {
 				request.setAttribute("alldatas", alldatas);

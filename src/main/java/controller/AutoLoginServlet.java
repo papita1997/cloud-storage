@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.StorageDao;
 import dao.Users;
+import global.GlobalData;
 import pojo.StoragePojo;
 import pojo.UserPojo;
 
@@ -68,7 +69,11 @@ public class AutoLoginServlet extends HttpServlet {
 	}
 	
 	private void loadData(String userid, HttpServletRequest request) throws Exception{
-			Map<String,List<StoragePojo>> alldatas = StorageDao.getAllStorageData(userid, "My Drive");
+		
+			String navPath = GlobalData.navPaths;
+			System.out.println(navPath);
+		
+			Map<String,List<StoragePojo>> alldatas = StorageDao.getAllStorageData(userid, navPath);
 			
 			if(alldatas!=null) {
 				request.setAttribute("alldatas", alldatas);

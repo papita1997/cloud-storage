@@ -52,6 +52,14 @@ function newFolder(e) {
     newFolderPopUp.style.width='410px';
 }
 
+function createNewFolder() {
+	const folderName = $("#new-folder-name").val();
+	$.post("NewFolderServlet",{data:folderName},function() {
+		$('.col-2').load(location.href+" .col-2");
+		closed();
+	});
+}
+
 function newFileUpload(e){
    openFile();  
 }

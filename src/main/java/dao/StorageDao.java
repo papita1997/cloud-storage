@@ -11,12 +11,13 @@ import dbutil.DBConnection;
 import pojo.StoragePojo;
 
 public class StorageDao {
-private static PreparedStatement ps,ps1;
+private static PreparedStatement ps,ps1,ps2;
 	
 	static {
 		try {
 			ps = DBConnection.getConnection().prepareStatement("select filename, navpath, createdate, type from storage where userid=? and type='folder' and navpath=?");
 			ps1 = DBConnection.getConnection().prepareStatement("select filename, navpath, filepath, createdate, type from storage where userid=? and type='file' and navpath=?");
+			ps2 = DBConnection.getConnection().prepareStatement("insert into storage values(?,?,?,?,?,?)");
 		} catch(Exception e) {
 			System.out.println(e);
 		}
@@ -61,6 +62,18 @@ private static PreparedStatement ps,ps1;
 		alldatas.put("file", files);
 		
 		return alldatas;
+	}
+	
+	public static boolean insertNewFolder(StoragePojo s) throws Exception {
+		ps2.setString(1, s.getUserId());
+		ps2.setString(2, s.getFileName());
+		ps2.setString(3, s.getNavPath());
+		ps2.setString(4, null);
+		java.sql.Date date = new java.sql.Date(s.getCreateDate().getTime());
+		ps2.setDate(5, date);
+		ps2.setString(6, s.getType());
+		
+		return ps2.executeUpdate()>0;
 	}
 }
 

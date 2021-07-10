@@ -30,17 +30,17 @@
                 <i class="fas fa-times" onclick="closed()"></i>
             </div>
             <div class="popup-text">
-                <input type="text" size="40" placeholder="Untitled Folder"/>
+                <input type="text" size="40" placeholder="Untitled Folder" id="new-folder-name" value="Untitled"/>
             </div>
             <div class="popup-btn">
                 <button id="cancel-btn" onclick="closed()">CANCEL</button>
-                <button>CREATE</button>
+                <button onclick="createNewFolder()" >CREATE</button>
             </div>
         </div>
      </div> <!-- End New Folder Popup -->
      <nav class="mynav">
         <div class="nav-items">
-             <div class="nav-logo">
+             <div class="nav-logo" id="check">
                  <img src="./images/logo.png" alt="">
                  <a href="#">Cloud Storage</a>
              </div>
@@ -94,7 +94,8 @@
             </div> <!-- End main left division -->
 
             <!-- main right division-1 -->
-            <div class="col-2">
+           
+            <div class="col-2" >
                 <!-- my drive section -->
                 <%
                 Map<String,List<StoragePojo>> alldatas = (Map<String,List<StoragePojo>>) request.getAttribute("alldatas");
@@ -105,7 +106,7 @@
                 <div class="row-1-nav">
                    <ul>
              
-                       <li><a href="#"><%=folders.isEmpty()?"My Drive":folders.get(0).getNavPath() %> ></a></li>
+                       <li><a href="#" id=""><%=folders.isEmpty()?"My Drive":folders.get(0).getNavPath() %> ></a></li>
                     
                    </ul>
                    <hr>
