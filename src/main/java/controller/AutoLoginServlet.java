@@ -29,6 +29,7 @@ public class AutoLoginServlet extends HttpServlet {
 		String mycookiename = "userUUID";
 		String browsercookie = "";
 		Cookie[] cookies = request.getCookies();
+		//System.out.println(cookies);
 		if(cookies == null) {
 			request.getSession().setAttribute("userid", null);
 			return;
@@ -39,7 +40,7 @@ public class AutoLoginServlet extends HttpServlet {
 				browsercookie = c.getValue();
 			}
 		}
-		
+		//System.out.println(browsercookie);
 		try {
 			if(browsercookie.isEmpty()) {
 				request.getSession().setAttribute("userid", null);
@@ -51,6 +52,7 @@ public class AutoLoginServlet extends HttpServlet {
 				request.getSession().setAttribute("userid", null);
 				return;
 			} 
+			//System.out.println(user.getUserid());
 			loadData(user.getUserid(),request);
 			request.getSession().setAttribute("userid", user.getUserid());
 			request.setAttribute("username", user.getUsername());
@@ -71,11 +73,13 @@ public class AutoLoginServlet extends HttpServlet {
 	private void loadData(String userid, HttpServletRequest request) throws Exception{
 		
 			String navPath = GlobalData.navPaths;
-			System.out.println(navPath);
+			request.setAttribute("navPaths", navPath);
+			//System.out.println(navPath);
 		
 			Map<String,List<StoragePojo>> alldatas = StorageDao.getAllStorageData(userid, navPath);
 			
 			if(alldatas!=null) {
+				//System.out.println(alldatas);
 				request.setAttribute("alldatas", alldatas);
 			}
 		

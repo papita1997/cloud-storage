@@ -12,12 +12,26 @@
 		return;
 	}
 %>
+
+<%!
+	public boolean isString(String s) {
+		try {
+			int i = Integer.parseInt(s);
+			return false;
+		} catch(NumberFormatException n) {
+			
+		}
+		return true;
+	}
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script> -->
     <link rel="stylesheet" href="./css/index.css">
     <title>Cloud Storage</title>
 </head>
@@ -50,7 +64,7 @@
                     </div>
                 </div>
              <div class="nav-links">
-                 <a href="<%=request.getAttribute("username")==null?"login.jsp":"logout" %>"><%=request.getAttribute("username")==null?"Login/sign-up":"Logout" %></a>
+                 <a href="<%=request.getAttribute("username")==null?"login.jsp":"LogoutServlet" %>"><%=request.getAttribute("username")==null?"Login/sign-up":"Logout" %></a>
                  <a href="#" style="cursor:default"><%=request.getAttribute("username")==null?"":request.getAttribute("username") %></a>
              </div>
         </div>
@@ -85,7 +99,7 @@
                         <div class="bar">
                         </div>
                     </div>
-                    <p id="space">369 MB of 15 GB Used</p>
+                    <p id="space" style="cursor:default; pointer-events:none;">369 MB of 15 GB Used</p>
                    <div class="btn-container">
                     <button class="btn">Buy Storage</button>
                    </div>
@@ -102,12 +116,22 @@
 
             	List<StoragePojo> folders = alldatas.get("folder");
             	List<StoragePojo> files = alldatas.get("file");
+            	String navPath= (String) request.getAttribute("navPaths");
+            	//System.out.println(navPath);
                 %>
                 <div class="row-1-nav">
                    <ul>
-             
-                       <li><a href="#" id=""><%=folders.isEmpty()?"My Drive":folders.get(0).getNavPath() %> ></a></li>
-                    
+             			<% 
+             				
+             					String[] navPaths = navPath.split("/");
+             					//System.out.println(navPaths[0]);
+             					
+             					for(int i=0;i<navPaths.length;i++) {
+             						if(isString(navPaths[i])) {
+             			%>
+                       	<li><a href="javascript:void" data-nav='{"id":"<%=navPaths.length==1?"0":navPaths[i+1]%>","name":"<%=navPaths[i] %>"}' onclick="navBack(this);"><%=navPaths[i]%> ></a></li>
+                    	<% } 
+             					}%>
                    </ul>
                    <hr>
                 </div>
@@ -121,7 +145,7 @@
                    			for(StoragePojo fol:folders) {
                    	
                    		%>
-                            <div class="folder-box">
+                            <div class="folder-box" data-info='{"id":"<%=fol.getId() %>","name":"<%=fol.getFileName() %>"}' ondblclick="openFolder(this);">
                                 <p><%=fol.getFileName() %></p>
                             </div>
                             
@@ -140,7 +164,7 @@
                    			for(StoragePojo fil:files) {
                    	
                    		%>
-                            <div class="file-box">
+                            <div class="file-box" data-id="<%=fil.getId() %>">
                                 <div class="file-img">
                                     <img src="./images/mp_police.png" alt="">
                                 </div>
@@ -160,7 +184,7 @@
                 </div>
                
             </div> <!-- End main right division-1 -->
-            
+           
             <!-- main right division-2 -->
             <div class="col-3">
                 <!-- storage section -->

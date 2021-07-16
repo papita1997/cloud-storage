@@ -30,10 +30,9 @@ public class HomeServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userid = (String) request.getSession().getAttribute("userid");
-		
 		String navPath = GlobalData.navPaths;
 		System.out.println(navPath);
-		
+		request.setAttribute("navPaths", navPath);
 		try {
 			Map<String,List<StoragePojo>> alldatas = StorageDao.getAllStorageData(userid, navPath);
 			

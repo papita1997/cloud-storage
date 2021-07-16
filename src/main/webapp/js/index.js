@@ -55,7 +55,9 @@ function newFolder(e) {
 function createNewFolder() {
 	const folderName = $("#new-folder-name").val();
 	$.post("NewFolderServlet",{data:folderName},function() {
-		$('.col-2').load(location.href+" .col-2");
+		//alert(location.href+" .col-2")
+		//$('.col-2').load(location.href+" .col-2");
+		location.reload();
 		closed();
 	});
 }
@@ -66,7 +68,7 @@ function newFileUpload(e){
 
 function newFolderUpload(e){
     openFile();  
- }
+}
 
  function myStorage(e) {
     const col2 = document.querySelector('.col-2');
@@ -109,6 +111,28 @@ document.querySelector('.storage-event').addEventListener('click',() =>{
 });
 
 
+/** Folder Double Click Event **/
+function openFolder(e) {
+	var id = $(e).data("info").id;
+	var name = $(e).data("info").name;
+	//alert(id +" "+name );
+	
+	$.post('OpenNewFolderServlet',{id:id,name:name},function() {
+		//$('.col-2').load(location.href+" .col-2");
+		location.reload();
+	});
+}
+
+/** Nav Back Click Event **/
+function navBack(e) {
+	var navId = $(e).data("nav").id;
+	var navName = $(e).data("nav").name;
+	//alert(navName);
+	$.post('NavBackServlet',{navId:navId,navName:navName},function() {
+		//$('.col-2').load(location.href+" .col-2");
+		location.reload();
+	});
+}
 
 
 

@@ -9,7 +9,15 @@ public class StoragePojo {
 	private String filePath;
 	private Date createDate;
 	private String type;
+	private int id;	
 	
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getUserId() {
 		return userId;
 	}
@@ -46,13 +54,14 @@ public class StoragePojo {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public StoragePojo(String userId, String fileName, String navPath, String filePath, Date createDate, String type) {
+	public StoragePojo(String userId, String fileName, String navPath, String filePath, Date createDate, String type,int id) {
 		this.userId = userId;
 		this.fileName = fileName;
 		this.navPath = navPath;
 		this.filePath = filePath;
 		this.createDate = createDate;
 		this.type = type;
+		this.id= id; 
 	}
 	
 	public StoragePojo() {

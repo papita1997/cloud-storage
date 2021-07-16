@@ -15,9 +15,9 @@ private static PreparedStatement ps,ps1,ps2;
 	
 	static {
 		try {
-			ps = DBConnection.getConnection().prepareStatement("select filename, navpath, createdate, type from storage where userid=? and type='folder' and navpath=?");
-			ps1 = DBConnection.getConnection().prepareStatement("select filename, navpath, filepath, createdate, type from storage where userid=? and type='file' and navpath=?");
-			ps2 = DBConnection.getConnection().prepareStatement("insert into storage values(?,?,?,?,?,?)");
+			ps = DBConnection.getConnection().prepareStatement("select filename, navpath, createdate, type, id from storage where userid=? and type='folder' and navpath=?");
+			ps1 = DBConnection.getConnection().prepareStatement("select filename, navpath, filepath, createdate, type, id from storage where userid=? and type='file' and navpath=?");
+			ps2 = DBConnection.getConnection().prepareStatement("insert into storage (userid,filename,navpath,filepath,createdate,type) values(?,?,?,?,?,?)");
 		} catch(Exception e) {
 			System.out.println(e);
 		}
@@ -37,6 +37,7 @@ private static PreparedStatement ps,ps1,ps2;
 			java.util.Date date = new java.util.Date(rs.getDate(3).getTime());
 			s.setCreateDate(date);
 			s.setType(rs.getString(4));
+			s.setId(rs.getInt(5));
 			folders.add(s);
 		}
 		
@@ -54,6 +55,7 @@ private static PreparedStatement ps,ps1,ps2;
 			java.util.Date date = new java.util.Date(rs1.getDate(4).getTime());
 			s.setCreateDate(date);
 			s.setType(rs1.getString(5));
+			s.setId(rs1.getInt(6));
 			files.add(s);
 		}
 		
@@ -72,7 +74,7 @@ private static PreparedStatement ps,ps1,ps2;
 		java.sql.Date date = new java.sql.Date(s.getCreateDate().getTime());
 		ps2.setDate(5, date);
 		ps2.setString(6, s.getType());
-		
+			
 		return ps2.executeUpdate()>0;
 	}
 }

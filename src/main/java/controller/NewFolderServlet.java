@@ -29,12 +29,12 @@ public class NewFolderServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("new folder servlet calls");
+		//System.out.println("new folder servlet calls");
 		
 		String userid = (String) request.getSession().getAttribute("userid");
 		
 		String folderName = (String) request.getParameter("data");
-		System.out.println(folderName);
+		//System.out.println(folderName);
 		
 		if(!folderName.isEmpty() || folderName !=null) {
 			StoragePojo s = new StoragePojo();
